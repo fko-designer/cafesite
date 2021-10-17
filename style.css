@@ -1,0 +1,348 @@
+@charset "UTF-8";
+
+html {
+  font-size: 100%;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  /* font-family: 'Montserrat', sans-serif; */
+  letter-spacing: 0.2em;
+  background-color: #efeded;
+}
+img {
+  max-width: 100%;
+}
+a {
+  color: #35383a;
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+
+
+/*-------------------------------------------
+ヘッダー
+-------------------------------------------*/
+#header {
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+#header ul {
+  display: flex;
+  padding: 10px 0;
+}
+#header li {
+  font-size: 0.9rem;
+  margin-left: 30px;
+}
+#header li a {
+  color: #24292e;
+}
+#header li a:hover {
+  opacity: 0.7;
+}
+#header li img.icon {
+  width: 20px;
+}
+
+
+
+.content {
+  display: flex;
+  width: 100%;
+  margin: 70px auto;
+}
+.content .left {
+  width: 35%;
+  position: relative;
+}
+/*
+疑似要素（before）で白いボックスを作り画像の上に重ねる
+「transform: skewX(-18deg);」で角度をつけて平行四辺形にする
+positionとrightで画像の上に重ねる
+*/
+
+.content .left::before {
+  content: "";
+  width: 163px;
+  height: 100%;
+  background: #efeded;
+  position: absolute;
+  right: -81px;
+  transform: skewX(-18deg);
+}
+.content .left .text-area {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+}
+.content .left .title {
+  line-height: 1;
+  margin-bottom: 56px;
+}
+
+.content .left .title .en {
+  display: block;
+  font-size: 6rem;
+  font-weight:bold;
+  margin-bottom: 12px;
+  color: transparent;
+  -webkit-text-stroke:tomato 3px;
+}
+
+
+.content .left .title .ja {
+  display: block;
+  font-size: 0.875rem;
+}
+.content .left .copy {
+  font-size: 0.875rem;
+}
+.content .right {
+  width: 65%;
+}
+/*
+「vertical-align: bottom;」で画像の下にできる隙間を消す
+「object-fit: cover;」で高さを500pxで固定したままトリミングする
+※「object-fit」はIEでは正しく動作しないため注意が必要
+*/
+.content .right img {
+  width: 100%;
+  height: 500px;
+  vertical-align: bottom;
+  object-fit: cover;
+}
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+@media screen and (max-width: 900px) {
+  /*
+  PC表示の時だけ表示させたい要素に設定しておくことで、
+  スマホ表示は非表示になる。
+  デモサイトでは、タイトル下のテキストのbrタグに設定することで、
+  PC表示の時だけbrタグが有効になりテキストが改行される。
+  */
+  .pc {
+    display: none;
+  }
+  .content {
+    flex-direction: column;
+  }
+  .content .left {
+    width: 100%;
+    padding: 0 16px;
+    margin-bottom: 20px;
+  }
+  /*
+  「content: none;」を設定することで疑似要素が非表示になるので、
+  画像に重ねていた四角いボックスが消える。
+  */
+  .content .left::before {
+    content: none;
+  }
+  .content .left .title .en {
+    font-size: 2.25rem;
+  }
+  /*
+  「position: static;」で absolute を解除する
+  */
+  .content .left .text-area {
+    position: static;
+  }
+  .content .right {
+    width: 100%;
+  }
+}
+
+
+.content_2 {
+  max-width: 1000px;
+  height: 698px;
+  margin: 100px auto 60px;
+  position: relative;
+}
+.text_2 {
+  max-width: 680px;
+  background-color: #ffe5e5;
+  /* background-color: #e0e0e0; */
+  padding: 84px 160px 84px 84px;
+  position: absolute;
+  left: 0;
+}
+.text_2 p {
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+.text_2 .title_2 {
+  border-bottom: solid 1px #35383a;
+  display: inline-block;
+  font-size: 1.875rem;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+.text_2 .large {
+  font-size: 1.875rem;
+}
+.text_2 .btn {
+  display: inline-block;
+  border-radius: 30px;
+  padding: 16px 50px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  /* background: #e0e0e0;
+  box-shadow:  20px 20px 60px #bebebe,
+               -20px -20px 60px #ffffff; */
+  background: #ffe5e5;
+  box-shadow:  20px 20px 60px #d9c3c3,
+             -20px -20px 60px #ffffff;
+}
+.text_2 .btn:hover {
+  /* background-color: #bebebe; */
+  background: #ffe5e5;
+  opacity: .5;
+}
+.img_2 {
+  max-width: 400px;
+  position: absolute;
+  top: 140px;
+  right: 20px;
+}
+.img_2 img {
+  vertical-align: bottom;
+}
+
+/*-------------------------------------------
+SP
+-------------------------------------------*/
+@media screen and (max-width: 900px) {
+  .content_2 {
+    height: auto;
+    position: static;
+    margin: 0;
+  }
+  .text_2 {
+    max-width: 100%;
+    padding: 60px 20px;
+    position: static;
+  }
+  .img_2 {
+    max-width: 100%;
+    position: static;
+  }
+  .img_2 img {
+    width: 100%;
+  }
+}
+
+footer {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ここからオリジナル*/
+
+/* .container {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  background-color: brown;
+}
+.left-box {
+  width: 35%;
+  position: relative;
+}
+.left-box::before {
+  content: "";
+  width: 163px;
+  height: 100%;
+  background: brown;
+  position: absolute;
+  right: -81px;
+  transform: skewX(18deg);
+}
+.text-box {
+  position: absolute;
+  top:60px;
+  left: 60px;
+}
+h2 {
+  line-height: 1;
+  margin-bottom: 56px;
+  font-size: 6rem;
+  font-weight: bolder;
+  margin-bottom: 60px;
+  color: transparent;
+  -webkit-text-stroke:black 3px;
+}
+.right-box {
+  width: 65%;
+}
+.right-box img {
+  width: 100%;
+  height: 500px;
+  vertical-align: bottom;
+  object-fit: cover;
+} */
+
+/*オリジナルsp*/
+
+/* @media screen and (max-width:900px) {
+  .br {
+    display: none;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .left-box {
+    width: 100%; */
+    /* padding: 0 16px; */
+    /* margin-bottom: 20px;
+  }
+  .left-box::before {
+    content: none;
+  }
+  h2 {
+    font-size: 2.25rem;
+  }
+  .text-box {
+    position: static;
+  }
+  .right-box {
+    width: 100%;
+  }
+} */
+
